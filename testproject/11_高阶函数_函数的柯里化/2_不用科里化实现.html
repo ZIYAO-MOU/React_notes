@@ -1,0 +1,60 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-02 02:44:48
+ * @LastEditTime: 2021-02-02 02:51:18
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-app/testproject/11_高阶函数_函数的柯里化/2_不用科里化实现.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+    /*
+    高阶函数的定义：
+    1.函数接收的参数是一个函数
+    2.函数调用的返回值是一个函数
+    两者满足其一即可。
+    函数的科里化：
+    通过函数调用返回函数的方式，实现多次调用参数最后统一处理的函数编码形式
+    */
+    class Login extends React.Component{
+        state={
+            username:'',
+            password:''
+        }
+        saveFormData=(dataType,event)=>{
+                this.setState(
+                    {
+                        [dataType]:event.target.value
+                    }
+                )
+        }
+        handleSubmit=(event)=>{
+            event.preventDefault()
+            const {username,password}=this.state
+            alert(`你输入的用户名是${username}，你输入的密码是${password}`)
+        }
+        render(){
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    用户名：<input onChange={event=>this.saveFormData('username',event)} type="text" name="username"/>
+                    密码：<input onChange={event=>this.saveFormData('password',event)} type="password" name="password"/>
+                    <button>登录</button>
+                </form>
+            )
+        }
+    }
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

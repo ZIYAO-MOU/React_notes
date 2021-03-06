@@ -1,0 +1,76 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-01 23:10:16
+ * @LastEditTime: 2021-03-02 02:16:14
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-app/牛客复习.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组方法
+        var a=[1,2,3]
+        //push pop
+        a.push(4);
+        //reverse
+        console.log(a.reverse())
+        var b=[1,2,3]
+        //unshift在第一项添加
+        console.log(b.reverse())
+        b.unshift(4);
+        console.log(b);
+        //splice,包括索引０进行查改
+        var c=[1,2,3];
+        //c.splice(0);
+        console.log(c)
+        //join，拼接字符串
+        console.log(c.join(';'))
+        //indexOf
+        console.log(c.indexOf(1))
+        //sort　排序
+        c.sort((a,b)=>(b-a))
+        console.log(c)
+        //foreach
+        c.forEach((item,index)=>(console.log(item,index)))
+        //map
+        c.map((item,index)=>(console.log(item,index)))
+        //slice
+        var arr1=[1,2,3];
+        var arr2=arr1.slice();
+        console.log(arr2);
+        console.log(arr2===arr1);
+        var arr3=arr1.concat()
+        console.log(arr3);
+        console.log(arr3===arr1);
+
+        async function async1() {
+    console.log('1');
+    await async2();
+    console.log('2');
+}
+async function async2() {
+    console.log('3');
+}
+console.log('4');
+setTimeout(function() {
+    console.log('5');
+}, 0)
+async1();
+new Promise(function(resolve) {
+    console.log('6');
+    resolve();
+}).then(function() {
+    console.log('7');
+});
+console.log('8');
+   </script>
+</body>
+</html>

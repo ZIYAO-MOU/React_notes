@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+    <script type="text/babel">
+    //1.创建虚拟DOM
+    function Person(props){
+        const {name,age,grade}=props
+        return(
+            <ul>
+                <li>姓名:{name}</li>            
+                <li>年龄:{age}</li>
+                <li>年级:{grade}</li>            
+            </ul>
+        )
+    }
+    Person.proptypes={
+        name:Proptypes.string.isRequired,
+        age:Proptypes.number,
+        grade:Proptypes.number
+    }
+    Person.defaultProps={
+        name:'abc'
+    }
+    const c1={name:'bdc',age:18,grade:5}
+    //语法糖
+    ReactDOM.render(<Person {...c1}/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

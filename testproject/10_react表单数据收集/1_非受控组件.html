@@ -1,0 +1,41 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-01 23:17:12
+ * @LastEditTime: 2021-02-01 23:32:22
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-app/testproject/10_react表单数据收集/1_非受控组件.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+    class Login extends React.Component{
+        handleSubmit=(event)=>{
+            event.preventDefault()
+            const{username,password}=this;
+            alert(`你输入的用户名是${username.value}，你输入的密码是${password.value}`)
+        }
+        render(){
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    用户名：<input ref={c=>this.username=c}type="text" name="username"/>
+                    密码：<input ref={c=>this.password=c}type="password" name="password"/>
+                    <button>登录</button>
+                </form>
+            )
+        }
+    }
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

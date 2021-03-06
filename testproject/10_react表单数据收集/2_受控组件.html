@@ -1,0 +1,57 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-01 23:33:16
+ * @LastEditTime: 2021-02-02 00:17:17
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-app/testproject/10_react表单数据收集/2_受控组件.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+    class Login extends React.Component{
+        state={
+            username:'',
+            password:''
+        }
+        saveUsername=()=>{
+            const {username}=this.state
+            this.setState({
+                username:event.target.value
+            })
+        }
+        savePassword=()=>{
+            const {password}=this.state
+            this.setState({
+                password:event.target.value
+            })
+        }
+        handleSubmit=(event)=>{
+            event.preventDefault()
+            //const{username,password}=this;
+            //alert(`你输入的用户名是${username.value}，你输入的密码是${password.value}`)
+        }
+        render(){
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    用户名：<input onChange={this.saveUsername} type="text" name="username"/>
+                    密码：<input onChange={this.savePassword} type="password" name="password"/>
+                    <button>登录</button>
+                </form>
+            )
+        }
+    }
+    ReactDOM.render(<Login/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

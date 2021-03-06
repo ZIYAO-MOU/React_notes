@@ -1,0 +1,58 @@
+<!--
+ * @Author: mouziyao
+ * @Date: 2021-02-01 21:52:20
+ * @LastEditTime: 2021-02-01 22:42:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-app/testproject/08_组件实例的三大属性3_refs/2_回调函数形式的ref.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+    class Demo extends React.Component{
+        showData=()=>{
+            const {input1}=this;
+            alert(input1.value)
+        }
+        state={
+            isHot:true
+        }
+        changeWeather=()=>{
+            const {isHot}=this.state
+            this.setState(
+                {
+                    isHot:!isHot
+                }
+            )
+        }
+        saveInput=(c)=>{
+            this.input1=c
+            console.log('@',c)
+        }
+        render(){
+            const {isHot}=this.state
+            return (
+                <div>
+                    <h2>今天天气很{isHot?'炎热':'凉爽'}</h2>
+                    {/*<input ref={c=>this.input1=c} type="text" placeholder="点击按钮提示数据"/>*/}
+                    <input ref={this.saveInput} type="text" />
+                    <button onClick={this.showData}>点我提示左边的数据</button>&nbsp;
+                    <button onClick={this.changeWeather}>点我切换天气</button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

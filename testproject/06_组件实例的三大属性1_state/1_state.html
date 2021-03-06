@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <script type="text/babel">
+    let that
+    class Weather extends React.Component{
+        //构造器调用几次？
+        //1次
+        constructor(props){
+            console.log('constructor')
+                super(props)
+                this.state = {
+                    isHot:true
+                }
+                this.changeWeather=this.changeWeather.bind(this)
+            }
+        render(){
+            //render调用n+1次，n是状态更新的次数
+            return(
+                <h2 onClick={this.changeWeather}>
+                    今天天气很{this.state.isHot?'炎热':'凉爽'}    
+                </h2>
+            )
+        }
+        changeWeather(){
+            //状态不可更改，要通过内置API去更改
+            const isHot=this.state.isHot
+            //this.state.isHot=!isHot,且更新是一种合并不是替换
+            this.setState(
+                {
+                    isHot:!isHot
+                }
+            )
+        }
+    }
+    ReactDOM.render(<Weather/>,document.getElementById('test'))
+
+    </script>
+</body>

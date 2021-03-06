@@ -1,0 +1,56 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-03 02:52:05
+ * @LastEditTime: 2021-02-03 03:33:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /react-app/testproject/13_DOM的diffing算法/2_key的作用.html
+-->
+<body>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+    <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+    <script type="text/babel">
+    /*
+        key被作为diffing算法判断虚拟DOM前后变化的标志
+        当index索引值做key值时：
+            1.逆序排列（即将最新的DOM插入数组开头），所有DOM会被更新，会出现低效能的情况
+            2.如果结构中还包含输入类的DOM
+                会产生错误的DOM更新===》界面有问题
+            3.仅用于渲染列表用于战士，index作为key是没有关系的
+        开发中如何选取key？
+            1.最好使用每条数据的唯一标识作为key，比如id、手机号、身份证号、学号等唯一值
+            2.如果确实只是简单的展示数据，用index也是可以的
+    */
+    class Person extends React.Component{
+        state={
+            persons:[
+            {id:1,name:'小张',age:18},
+            {id:2,name:'小王',age:19}]
+        }
+        //加1按钮的回调
+        add=()=>{
+            const {persons}=this.state
+            const person={id:3,name:"小牟",age:20}
+            this.setState({
+                persons:[person,...persons]
+            })
+        }
+        render(){
+            return(
+                <div>
+                    {
+                        this.state.persons.map((person)=>{
+                            return <div>id:{person.id}--name:{person.name}--age:{person.age}</div>
+                        })
+                    }
+                <button onClick={this.add}>添加一个小牟</button>    
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Person/>,document.getElementById('test'))
+    </script>
+</body>
+</html>
